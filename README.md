@@ -20,7 +20,7 @@
 
 # Build
 
-```
+```shell
 docker build -t garland/aws-cli-docker:x.x .
 ```
 
@@ -51,14 +51,15 @@ An automated build of this image is on Docker Hub: https://hub.docker.com/r/garl
 ## Example Usage:
 
 ### Describe an instance:
-
+```shell
     docker run \
     --env AWS_ACCESS_KEY_ID=<<YOUR_ACCESS_KEY>> \
     --env AWS_SECRET_ACCESS_KEY=<<YOUR_SECRET_ACCESS>> \
     --env AWS_DEFAULT_REGION=us-east-1 \
     garland/aws-cli-docker \
     aws ec2 describe-instances --instance-ids i-90949d7a
-
+```
+```json
 output:
 
     {
@@ -77,14 +78,15 @@ output:
     ...
     ...
     }
-
+```
 ### Return a list of items in s3 bucket
-
+```shell
     docker run \
     --env AWS_ACCESS_KEY_ID=<<YOUR_ACCESS_KEY>> \
     --env AWS_SECRET_ACCESS_KEY=<<YOUR_SECRET_ACCESS>> \
     garland/aws-cli-docker \
     aws s3 ls
+```
 
 output:
 
@@ -92,14 +94,14 @@ output:
     2014-06-06 23:02:29 folder2
 
 ### Upload content of your current directory (say it contains two files _test.txt_ and _test2.txt_) to s3 bucket
-
+```shell
     docker run \
     --env AWS_ACCESS_KEY_ID=<<YOUR_ACCESS_KEY>> \
     --env AWS_SECRET_ACCESS_KEY=<<YOUR_SECRET_ACCESS>> \
     -v $PWD:/data \
     garland/aws-cli-docker \
     aws s3 sync . s3://mybucket
-
+```
 output:
 
     (dryrun) upload: test.txt to s3://mybucket/test.txt
@@ -109,7 +111,7 @@ doc: http://docs.aws.amazon.com/cli/latest/reference/s3/index.html
 
 ### Retrieve a decrypted Windows password by passing in your private key
 We will map the private keys that resides on your local system to inside the container
-
+```shell
     docker run \
     -v <<LOCATION_TO_YOUR_PRIVATE_KEYy>>:/tmp/key.pem \
     --env AWS_ACCESS_KEY_ID=<<YOUR_ACCESS_KEY>> \
@@ -117,19 +119,20 @@ We will map the private keys that resides on your local system to inside the con
     --env AWS_DEFAULT_REGION=us-east-1 \
     garland/aws-cli-docker \
     aws ec2 get-password-data --instance-id  <<YOUR_INSTANCE_ID>> --priv-launch-key /tmp/key.pem
-
+```
 Output:
-
+```json
     {
         "InstanceId": "i-90949d7a",
         "Timestamp": "2014-12-11T01:18:27.000Z",
         "PasswordData": "8pa%o?foo"
     }
-
+```
 doc: http://docs.aws.amazon.com/cli/latest/reference/ec2/get-password-data.html
 
 ## Example Usage with Docker Compose:
-
+```shell
     echo AWS_ACCESS_KEY_ID=ID >> .env
     echo AWS_SECRET_ACCESS_KEY=KEY >> .env
     docker-compose run aws s3 ls
+```
