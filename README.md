@@ -13,10 +13,11 @@
 - [`0.2` (*0.2/Dockerfile*)](https://github.com/sekka1/aws-cli-docker/blob/0.2/0.2/Dockerfile)
 - [`1.15.47` (*1.15.47/Dockerfile*)](https://github.com/sekka1/aws-cli-docker/tree/master/1.15.47)
 - [`1.16.140` (*1.16.140/Dockerfile*)](https://github.com/sekka1/aws-cli-docker/tree/master/1.16.140)
+- [`1.17.5` (*1.16.140/Dockerfile*)](https://github.com/sekka1/aws-cli-docker/tree/master/1.17.5)
 
 # AWS CLI Version
 
-* [1.16.140](https://github.com/aws/aws-cli/releases/tag/1.16.140)
+* [1.17.5](https://github.com/aws/aws-cli/releases/tag/1.17.5)
 
 # Build
 
